@@ -16,10 +16,12 @@ public class CrimeLab {
     private static CrimeLab sCrimeLab;
     private Context mAppContext;
 
+    // Constructor.
     private CrimeLab(Context appContext) {
         mAppContext = appContext;
         mCrimes = new ArrayList<Crime>();
 
+        // Generates list of fake crimes.
         for (int i = 0; i < 100; i++) {
             Crime c = new Crime();
             c.setTitle("Crime #" + i);
@@ -27,7 +29,7 @@ public class CrimeLab {
             mCrimes.add(c);
         }
     }
-
+    // Custom getter.
     public static CrimeLab get(Context c) {
         if (sCrimeLab == null) {
             sCrimeLab = new CrimeLab(c.getApplicationContext());

@@ -21,6 +21,7 @@ import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
 
+    // Static identifier string.
     public static final String EXTRA_CRIME_ID = "com.mark.criminalintent.crime_id";
 
     private Crime mCrime;
@@ -33,8 +34,9 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Retrieves id from set arguments.
         UUID crimeId = (UUID)getArguments().getSerializable(EXTRA_CRIME_ID);
-
+        // Retrieves specific Crime.
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
 
@@ -42,12 +44,13 @@ public class CrimeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, parent, false);
 
+        // Populates widgets.
         mTitleField = (EditText)v.findViewById(R.id.crime_title);
         mTitleField.setText(mCrime.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence c, int start, int before, int count) {
-
+                // Required Override
             }
 
             @Override
@@ -57,7 +60,7 @@ public class CrimeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable c) {
-
+                // Required Override
             }
         });
 
@@ -79,6 +82,7 @@ public class CrimeFragment extends Fragment {
         return v;
     }
 
+    // Defines newInstance method.
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_CRIME_ID, crimeId);

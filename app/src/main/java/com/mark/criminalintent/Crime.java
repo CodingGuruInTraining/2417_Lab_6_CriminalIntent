@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- *
+ * Object class for each individual crime.
  */
 
 public class Crime {
@@ -19,11 +19,13 @@ public class Crime {
         mDate = new Date();
     }
 
+    // toString override.
     @Override
     public String toString() {
         return mTitle;
     }
 
+    // Getters and Setters.
     public UUID getId() {
         return mId;
     }

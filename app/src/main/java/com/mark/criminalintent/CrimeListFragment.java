@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class CrimeListFragment extends ListFragment {
-
+    // Static string.
     private static final String TAG = "CrimeListFragment";
     private ArrayList<Crime> mCrimes;
 
@@ -28,6 +28,7 @@ public class CrimeListFragment extends ListFragment {
         getActivity().setTitle(R.string.crimes_title);
         mCrimes = CrimeLab.get(getActivity()).getCrimes();
 
+        // Instantiate custom array adapter.
         CrimeAdapter adapter = new CrimeAdapter(mCrimes);
         setListAdapter(adapter);
     }
@@ -42,6 +43,7 @@ public class CrimeListFragment extends ListFragment {
         startActivity(i);
     }
 
+    // Defines custom array adapter class.
     private class CrimeAdapter extends ArrayAdapter<Crime> {
         public CrimeAdapter(ArrayList<Crime> crimes) {
             super(getActivity(), 0, crimes);
@@ -57,6 +59,7 @@ public class CrimeListFragment extends ListFragment {
             // Configure the view for this Crime.
             Crime c = getItem(position);
 
+            // Sets up widgets.
             TextView titleTextView = (TextView) convertView.findViewById(R.id.crime_list_item_titleTextView);
             titleTextView.setText(c.getTitle());
 
@@ -73,6 +76,7 @@ public class CrimeListFragment extends ListFragment {
     @Override
     public void onResume() {
         super.onResume();
+        // Updates array even when using back button.
         ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 }
